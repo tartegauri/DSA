@@ -45,29 +45,77 @@ class StringQuestions {
   }
 
   public static String reverseString(String str) {
-    return " ";
+    String ans = "";
+
+    for(int i= str.length()-1 ; i>= 0  ;i-- ){
+        ans = ans + str.charAt(i);
+    }
+
+    return ans;
+    
+
+  
   }
 
-  public static void fibonacci(int n) {
+
+  public static int fibonacci(int n ,int[] arr) {
+  //  1 1 2 3 5  
+  
+    if( n <= 2 ){
+       arr[n] = 1;  
+      return 1;
+     
+    }
+
+    if(arr[n] != 0){ 
+       return arr[n];
+    }  
+
+    int k = fibonacci(n-1 , arr)+fibonacci(n-2 , arr); 
+    arr[n]= k;
+    // 4 : 3 , 2 
+    // 5 : 4 , 3 
+    // 6 : 5 , 4 
+
+    return k;
 
   }
 
-  public static long factorial(int n) {
-    return 1;
+  public static int factorial(int n , int arr[]) {
+    //4.3.2.1 if n is 1 then just return
+  
+      if(n == 1){
+        arr[n] = 1;
+        return 1;
+      }  
+
+     int k = n *factorial(n-1 , arr);
+
+     arr[n] =k ; 
+     
+      return k;
   }
 
   public static void main(String[] args) {
     String sentence = "I love India";
+   
 
-    countCharacters(sentence);
-
-    System.out.println("Reversed: " + reverseString(sentence));
-
+    countCharacters(sentence); 
     int n = 5;
-    fibonacci(n);
+     int arr[] = new int[n+1];
+    System.out.println("Reversed: " + reverseString(sentence));
+    System.out.println( fibonacci(n , arr));
+    System.out.println(Arrays.toString(arr));
+
+
+   
+   
 
     int num = 5;
-    System.out.println("Factorial: " + factorial(num));
+    int ar[] = new int[num+1]; 
+   
+    System.out.println("Factorial: " + factorial(num , ar));
+    System.out.println(Arrays.toString(ar));
 
   }
 }
